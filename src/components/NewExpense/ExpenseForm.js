@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import './ExpenseForm.css';
+import ExpenseData from './ExpenseData';
 
 const ExpenseForm = (props) => {
    const[enteredTitle,setEnteredTitle] = useState('')
@@ -10,6 +11,13 @@ const ExpenseForm = (props) => {
 //    enteredAmount: '',
 //    entereDate: ''
 // })
+const[cancelBtn,setCancelBtn] = useState(false)
+const removeForm = () =>{
+   setCancelBtn(true)
+}
+if(cancelBtn === true){
+   return <ExpenseData/>
+}
    const titleChangeHandler = (event)=>{
       setEnteredTitle(event.target.value)
       // setUserInput({
@@ -46,6 +54,7 @@ setEnteredDate('')
    }
   return (
    <form onSubmit={submitHandler}>
+   {/* <ExpenseData/> */}
  <div className='new-expense__controls'>
  <div className='new-expense__controls'>
    <label>Title</label>
@@ -69,6 +78,7 @@ setEnteredDate('')
  </div>
  <div className='new-expense__actions'>
    <button type='submit'>Add Expense</button>
+   <button onClick={removeForm}>Cancel</button>
  </div>
  </form>
   
